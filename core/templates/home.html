@@ -18,7 +18,9 @@
             <a href="/?num=1"><button type="button" class="btn btn-secondary">Furnished</button></a>
             <a href="/?num=2"><button type="button" class="btn btn-secondary">Parking</button></a>
             <a href="/?num=3"><button type="button" class="btn btn-secondary">Balcony</button></a>
-
+            {% if user_data['role'] == 'seller' %}
+            <a href="/property_form"><button type="button" class="btn btn-primary">Add Property</button></a>
+            {% endif %}
         </div><!-- End Page Title -->
 
         <div class="container">
