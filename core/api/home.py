@@ -17,8 +17,21 @@ def homes():
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
     }
     page = request.args.get("page", 1, type=int)
-    properties_data = Properties.query.paginate(page=page, per_page=9)
-
+    num = request.args.get("num", 0, type=int)
+    if num == 1:
+        properties_data = Properties.query.filter_by(
+            furnishing_status="furnished"
+        ).paginate(page=page, per_page=9)
+    elif num == 2:
+        properties_data = Properties.query.filter_by(parking=True).paginate(
+            page=page, per_page=9
+        )
+    elif num == 3:
+        properties_data = Properties.query.filter_by(balcony=True).paginate(
+            page=page, per_page=9
+        )
+    else:
+        properties_data = Properties.query.paginate(page=page, per_page=9)
     # Add the count of interested users to each property
     for property in properties_data.items:
         count = (
