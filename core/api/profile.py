@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, jsonify, request
-from flask_login import current_user
+from flask import Blueprint, redirect, render_template, jsonify, request, url_for
+from flask_login import current_user, login_required
 from sqlalchemy import inspect
 import requests
 from core.models import InterestedBuyers, Properties
@@ -11,7 +11,10 @@ profile = Blueprint("profile", __name__)
 
 
 @profile.route("/account")
+@login_required
 def account():
+    if not current_user.is_authenticated:
+        return redirect(url_for("home.signin"))
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs

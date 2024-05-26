@@ -11,7 +11,9 @@ home = Blueprint("home", __name__)
 
 @home.route("/")
 @login_required
-def homes():
+def homes(current_user):
+    if not current_user.is_authenticated:
+        return redirect(url_for("home.signin"))
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
