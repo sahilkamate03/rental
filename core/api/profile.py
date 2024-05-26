@@ -13,8 +13,6 @@ profile = Blueprint("profile", __name__)
 @profile.route("/account")
 @login_required
 def account():
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs

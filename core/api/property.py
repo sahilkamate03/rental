@@ -19,8 +19,6 @@ property = Blueprint("property", __name__)
 @property.route("/add_property_details", methods=["POST"])
 @login_required
 def add_property_details():
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
 
     form = PropertyForm()
     if form.validate_on_submit():
@@ -60,9 +58,6 @@ def add_property_details():
 @property.route("/property_form")
 @login_required
 def property_form():
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
-
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
@@ -75,9 +70,6 @@ def property_form():
 @property.route("/property_delete/<int:property_id>")
 @login_required
 def property_delete(property_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
-
     property = Properties.query.filter_by(id=property_id).first()
     db.session.delete(property)
     db.session.commit()
@@ -88,9 +80,6 @@ def property_delete(property_id):
 @property.route("/update_property_form/<int:property_id>")
 @login_required
 def update_property_form(property_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
-
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
@@ -107,9 +96,6 @@ def update_property_form(property_id):
 @property.route("/update_property_details/<int:property_id>", methods=["POST"])
 @login_required
 def update_property_details(property_id):
-    if  not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
-
     form = PropertyForm()
     if form.validate_on_submit():
         property = Properties.query.filter_by(id=property_id).first()
@@ -144,8 +130,6 @@ def update_property_details(property_id):
 @property.route("/property/detail/<int:property_id>")
 @login_required
 def property_detail(property_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
@@ -168,8 +152,6 @@ def property_detail(property_id):
 @property.route("/property_like/<int:property_id>")
 @login_required
 def property_like(property_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
     user_id = current_user.id
     ib = InterestedBuyers(property_id=property_id, buyer_id=user_id)
     db.session.add(ib)
@@ -211,9 +193,6 @@ def send_email(email, content):
 @property.route("/intrested/<int:property_id>")
 @login_required
 def isIntrested(property_id):
-    if  not current_user.is_authenticated:
-        return redirect(url_for("home.signin"))
-
     user_id = current_user.id
     user_email = current_user.email
     property_data = Properties.query.filter_by(id=property_id).first()
