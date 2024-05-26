@@ -4,6 +4,7 @@ import os
 import smtplib
 from flask import Blueprint, flash, jsonify, request, render_template
 from flask_login import current_user, login_user, logout_user, login_required
+import requests
 from sqlalchemy import inspect
 from core.models import Properties, Users, db, InterestedBuyers
 from core.forms import LoginForm, PropertyForm
@@ -132,10 +133,15 @@ def property_detail(property_id):
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
     }
     property_data = Properties.query.filter_by(id=property_id).first()
+
+    img_src = requests.get("https://picsum.photos/500")
+    # property_data.img_src = img_src.url
     property_dict = {
         c.key: getattr(property_data, c.key)
         for c in inspect(property_data).mapper.column_attrs
     }
+
+    property_dict["img_src"] = img_src.url
     return render_template(
         "property_detail.html", p_dict=property_dict, user_data=user_dict
     )

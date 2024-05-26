@@ -4,7 +4,7 @@ from core.forms import UserForm, LoginForm, RegistrationForm
 from core.models import InterestedBuyers, Users, Properties
 from core import db
 from sqlalchemy import inspect, func
-
+import requests
 
 home = Blueprint("home", __name__)
 
@@ -40,12 +40,14 @@ def homes():
 
     # Add the count of interested users to each property
     for property in properties_data.items:
+        img_src = requests.get("https://picsum.photos/500")
         count = (
             db.session.query(func.count(InterestedBuyers.id))
             .filter(InterestedBuyers.property_id == property.id)
             .scalar()
         )
         property.like = count
+        property.img_src = img_src.url
     return render_template(
         "home.html", user_data=user_dict, properties_data=properties_data
     )
