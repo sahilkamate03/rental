@@ -22,16 +22,22 @@ def homes():
         properties_data = Properties.query.filter_by(
             furnishing_status="furnished"
         ).paginate(page=page, per_page=9)
+        flash("Furnished Properties", "info")
     elif num == 2:
         properties_data = Properties.query.filter_by(parking=True).paginate(
             page=page, per_page=9
         )
+        flash("Parking Properties", "info")
     elif num == 3:
         properties_data = Properties.query.filter_by(balcony=True).paginate(
             page=page, per_page=9
         )
+        flash("Balcony Properties", "info")
+
     else:
         properties_data = Properties.query.paginate(page=page, per_page=9)
+        flash("All Properties", "info")
+
     # Add the count of interested users to each property
     for property in properties_data.items:
         count = (

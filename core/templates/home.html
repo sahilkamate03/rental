@@ -14,13 +14,23 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </nav>
-            <button type="button" class="btn btn-secondary">Furnished</button>
-            <button type="button" class="btn btn-secondary">Parking</button>
-            <button type="button" class="btn btn-secondary">Airport</button>
+            <a href="/"><button type="button" class="btn btn-secondary">All</button></a>
+            <a href="/?num=1"><button type="button" class="btn btn-secondary">Furnished</button></a>
+            <a href="/?num=2"><button type="button" class="btn btn-secondary">Parking</button></a>
+            <a href="/?num=3"><button type="button" class="btn btn-secondary">Balcony</button></a>
 
         </div><!-- End Page Title -->
 
         <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}  mx-auto " role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <section class="mx-auto my-5">
                 <div class="row">
                     {% for dict in properties_data %}
