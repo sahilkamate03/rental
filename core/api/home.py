@@ -11,7 +11,7 @@ home = Blueprint("home", __name__)
 
 @home.route("/")
 @login_required
-def homes(current_user):
+def homes():
     user_data = current_user
     user_dict = {
         c.key: getattr(user_data, c.key) for c in inspect(user_data).mapper.column_attrs
