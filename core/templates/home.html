@@ -1,0 +1,66 @@
+{% extends './layout/base_list.html' %}
+{% block content %}
+
+<div class="container">
+    <section class="mx-auto my-5"></section>
+    <main id="main" class="main">
+
+        <!-- Page Title -->
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('home.homes' ) }}">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+            <button type="button" class="btn btn-secondary">Furnished</button>
+            <button type="button" class="btn btn-secondary">Parking</button>
+            <button type="button" class="btn btn-secondary">Airport</button>
+
+        </div><!-- End Page Title -->
+
+        <div class="container">
+            <section class="mx-auto my-5">
+                <div class="row">
+                    {% for dict in properties_data %}
+                    <div class="col-md-4 mb-5">
+                        <div class="card mb-4" style="max-width: 19rem;">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg"
+                                    class="img-fluid" />
+                                <a href="#!"></a>
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title font-weight-bold"><a>{{dict['title']}}</a></h5>
+                                <p class="card-text">
+                                    {{dict['description']}}
+                                </p>
+
+                                <hr class="my-4" />
+                                <p class="lead"><strong>Overview</strong></p>
+                                <p><strong>Rent : </strong> Rs {{dict['rent']}}</p>
+                                <p><strong>Type : </strong> {{dict['property_type']}}</p>
+                                <a href="/property_like/{{dict['id']}}" class="btn btn-danger">Like
+                                    ({{dict['like']}})</a>
+
+                                <a href="/property/detail/{{dict['id']}}"
+                                    class="btn btn-link link-secondary p-md-1 mb-0">More Details...</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+
+
+    </main><!-- End #main -->
+
+    <!-- home js starts -->
+    <script src="{{ url_for('static', filename = 'assets/js/home.js' ) }}"></script>
+    {% endblock content%}

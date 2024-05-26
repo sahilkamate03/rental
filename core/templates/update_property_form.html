@@ -1,0 +1,128 @@
+{% extends './layout/base.html' %}
+{% block content %}
+
+<main>
+    <div class="container mt-5">
+
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <!-- End Logo -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}  mx-auto " role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="container-fluid mt-5">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Update Property Details</h5>
+                            <p class="text-center small">Fill the form correctly.</p>
+                        </div>
+                        <form class="row g-3 needs-validation" method="POST"
+                            action="/update_property_details/{{property_id}}">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.title.label(class="form-control-label") }}
+                                {{ form.title(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.description.label(class="form-control-label") }}
+                                {{ form.description(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.place.label(class="form-control-label") }}
+                                {{ form.place(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.area.label(class="form-control-label") }}
+                                {{ form.area(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.number_of_bedrooms.label(class="form-control-label") }}
+                                {{ form.number_of_bedrooms(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.number_of_bathrooms.label(class="form-control-label") }}
+                                {{ form.number_of_bathrooms(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.property_type.label(class="form-control-label") }}
+                                {{ form.property_type(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.furnishing_status.label(class="form-control-label") }}
+                                {{ form.furnishing_status(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.facing.label(class="form-control-label") }}
+                                {{ form.facing(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.water_supply.label(class="form-control-label") }}
+                                {{ form.water_supply(class="form-control") }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.age_of_building.label(class="form-control-label") }}
+                                {{ form.age_of_building(class="form-control") }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.rent.label(class="form-control-label") }}
+                                {{ form.rent(class="form-control") }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.deposit.label(class="form-control-label") }}
+                                {{ form.deposit(class="form-control") }}
+                            </div>
+
+                            <div class="form-group form-check">
+                                {{ form.gated_security() }}
+                                {{ form.gated_security.label(class="form-check-label") }}
+                            </div>
+
+                            <div class="form-group form-check">
+                                {{ form.parking() }}
+                                {{ form.parking.label(class="form-check-label") }}
+                            </div>
+
+                            <div class="form-group form-check">
+                                {{ form.balcony() }}
+                                {{ form.balcony.label(class="form-check-label") }}
+                            </div>
+
+                            <div class="form-group form-check">
+                                {{ form.nearby_hospitals() }}
+                                {{ form.nearby_hospitals.label(class="form-check-label") }}
+                            </div>
+
+                            <div class="form-group form-check">
+                                {{ form.nearby_colleges() }}
+                                {{ form.nearby_colleges.label(class="form-check-label") }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.submit(class="btn btn-primary w-100") }}
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+
+    </section>
+
+    </div>
+</main><!-- End #main -->
+{% endblock content%}

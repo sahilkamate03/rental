@@ -1,0 +1,32 @@
+Login:- 
+    1. First name
+    2. Last name
+    3. Email
+    4. Phone number
+
+    (The application should allow a user to register himself Note: The user can be a seller or buyer.)
+
+Seller Flow:-
+
+    1. Able to post his property by providing details about his property. Note Create a list of essential property attributes necessary for marketing a property for sale.
+    2. For example place, area, number of bedrooms, bathroom, hospitals & colleges nearby etc
+    3. The seller should be able to see the properties he has posted.
+    4. The seller should be able to update or delete this properties
+
+Buyer flow:-
+
+    1. He should be ate to view all the posted rental properties
+    2. If he is interested in any property:
+        He should be able to click on I'm interested button on the property widget. Once the buyer clicks on the button the seller details should be shown
+    3. Buyeer should able to apply filters on possible criteria.
+    4. Filters based on any of the above property attributes.
+
+Add On Features:- 
+
+    1. Pagination and proper form validation should be handled.
+    2. Mandatory login for the buyers to view the seller detalls
+        - If an unauthorized user attempts to access seller information, the page should be redirected to the login screen
+    3. Add Like button to each property and track the count live.
+    4. When the buyer clicks on the I'm Interested button on the property widget
+    5. The buyer will also get the seller's contact detalls in the email apart from the details displayed on the widget.
+    6. The seller will get the details about the interested buyer in his email.

@@ -1,0 +1,160 @@
+{% extends './layout/base.html' %}
+{% block content %}
+
+<!-- content -->
+<section class="py-5 mt-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}  mx-auto " role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+                        href="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp">
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                            src="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp" />
+                    </a>
+                </div>
+
+                <!-- thumbs-wrap.// -->
+                <!-- gallery-wrap .end// -->
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        {{p_dict['title']}}
+                    </h4>
+
+
+                    <div class="mb-3">
+                        <span class="h5">Rs {{p_dict['rent']}}</span>
+
+                    </div>
+
+                    <p>
+                        {{p_dict['description']}}
+                    </p>
+
+                    <div class="row">
+
+                        <dt class="col-3">Deposit</dt>
+                        <dd class="col-9">Rs {{p_dict['deposit']}}</dd>
+
+                        <dt class="col-3">Area</dt>
+                        <dd class="col-9">{{p_dict['area']}} sq ft</dd>
+
+
+                        <dt class="col-3">Bedrooms:</dt>
+                        <dd class="col-9">{{p_dict['number_of_bedrooms']}}</dd>
+
+                        <dt class="col-3">Building Age</dt>
+                        <dd class="col-9">{{p_dict['age_of_building']}}</dd>
+                    </div>
+
+                    <a href="/intrested/{{p_dict['id']}}"><button type="button" class="btn btn-primary"">Is
+                        Intreseted?</button></a>
+
+                    <hr />
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+<!-- content -->
+
+<section class=" bg-light border-top py-4">
+                            <div class="container">
+                                <div class="row gx-4">
+                                    <div class="col-lg-8 mb-4">
+                                        <div class="border rounded-2 px-3 py-2 bg-white">
+                                            <!-- Pills navs -->
+                                            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                                <li class="nav-item d-flex" role="presentation">
+                                                    <a class="nav-link d-flex align-items-center justify-content-center w-100 active"
+                                                        id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1"
+                                                        role="tab" aria-controls="ex1-pills-1"
+                                                        aria-selected="true">Specification</a>
+                                                </li>
+
+                                            </ul>
+                                            <!-- Pills navs -->
+
+                                            <!-- Pills content -->
+                                            <div class="tab-content" id="ex1-content">
+                                                <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel"
+                                                    aria-labelledby="ex1-tab-1">
+                                                    <p>
+                                                        {{p_dict['description']}}
+                                                    </p>
+                                                    <div class="row mb-2">
+                                                        <div class="col-12 col-md-6">
+                                                            <ul class="list-unstyled mb-0">
+                                                                {% if p_dict['gated_security'] %}
+                                                                <li><i class="fas fa-check text-success me-2"></i>Gated
+                                                                    Security</li>
+                                                                {% endif %}
+                                                                {% if p_dict['parking'] %}
+                                                                <li><i
+                                                                        class="fas fa-check text-success me-2"></i>Parking
+                                                                </li>
+                                                                {% endif %}
+                                                                {% if p_dict['balcony'] %}
+                                                                <li><i
+                                                                        class="fas fa-check text-success me-2"></i>Balcony
+                                                                </li>
+                                                                {% endif %}
+                                                                {% if p_dict['nearby_hospitals'] %}
+                                                                <li><i class="fas fa-check text-success me-2"></i>Nearby
+                                                                    Hospital</li>
+                                                                {% endif %}
+                                                                {% if p_dict['nearby_colleges'] %}
+                                                                <li><i class="fas fa-check text-success me-2"></i>Nearby
+                                                                    College</li>
+                                                                {% endif %}
+                                                                {% if p_dict['nearby_airport'] %}
+                                                                <li><i class="fas fa-check text-success me-2"></i>Nearby
+                                                                    Airport</li>
+                                                                {% endif %}
+
+
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                    <table class="table border mt-3 mb-2">
+                                                        <tr>
+                                                            <th class="py-2">Furnsishing Status:</th>
+                                                            <td class="py-2">{{p_dict['furnishing_status']}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="py-2">Facing:</th>
+                                                            <td class="py-2">{{p_dict['facing']}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="py-2">Water Supply:</th>
+                                                            <td class="py-2">{{p_dict['water_supply']}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="py-2">Bathroom</th>
+                                                            <td class="py-2">{{p_dict['number_of_bathrooms']}}
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                            <!-- Pills content -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+</section>
+{% endblock content%}
